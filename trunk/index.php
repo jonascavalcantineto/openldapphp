@@ -1,11 +1,11 @@
 <?
 require_once(dirname(__FILE__) . '/src/ldapManagerAPI.php');
 
-	$host = "192.168.2.29";
+	$host = "";
 	$porta = "389";
-	$basedn = "dc=fortaleza,dc=ce,dc=gov,dc=br";
+	$basedn = "dc=<base>,dc=com,dc=br";
 	$admin = "Manager";
-	$senhaAdmin = "azsxdcfv";
+	$senhaAdmin = "";
 	$conexao = NULL;
 	
 	
@@ -33,7 +33,7 @@ require_once(dirname(__FILE__) . '/src/ldapManagerAPI.php');
 	else
 		echo "Nao foi possivel alterar pass";*/
 
-	$resultado = $ldapManager->validateUserLdap($conexao,"12344321","11/06/2014", "maxlane@gmail.com");	
+	$resultado = $ldapManager->validateUserLdap($conexao,"","", "");	
 	if($resultado)
 		echo "Existe usuario";
 	else
