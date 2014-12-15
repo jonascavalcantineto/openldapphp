@@ -123,8 +123,8 @@ class ldapManager{
 	/**
     * Users ADD LDAP
     * 
-    * ex.: getUsers(conection,"uid",array("uid"));
-    * @param connection $conn,String $name,String mail,String $pass
+    * 
+    * @param connection $conn,String $name,String $user,String mail,String $pass
     * @return boolean
     */
 	public function userAddLdap($conn,$name,$user,$dateUser,$mail,$pass){
@@ -148,7 +148,7 @@ class ldapManager{
 		if($r){
 			$password = "{SHA}".base64_encode(pack("H*",sha1($pass)));
 			$entry["userPassword"] = "$password";
-			ldap_modify($conn,"uid=$user,ou=Users,dc=fortaleza,dc=ce,dc=gov,dc=br",$entry);
+			ldap_modify($conn,"uid=$user,ou=Users,".$this->ldapbasedn,$entry);
 		}
 		
 		return $r;
@@ -160,7 +160,7 @@ class ldapManager{
 		
 		$password = "{SHA}".base64_encode(pack("H*",sha1($newPass)));
 		$entry["userPassword"] = "$password";
-		$r = ldap_modify($conn,"uid=$user,ou=Users,dc=fortaleza,dc=ce,dc=gov,dc=br",$entry);
+		$r = ldap_modify($conn,"uid=$user,ou=Users,".$this->ldapbasedn,$entry);
 		
 		return $r;
 		
